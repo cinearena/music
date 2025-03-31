@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Released Headlines</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Basic styling for the header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        /* Title of the section */
+        .header h1 {
+            margin: 0;
+        }
+
+        /* Search input and button styling */
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container input {
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+            display: none; /* Initially hidden on mobile */
+        }
+
+        .search-btn {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-btn i {
+            font-size: 18px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .search-container input {
+                display: inline-block; /* Show the input field on smaller screens */
+                width: 150px;
+            }
+
+            .search-btn i {
+                font-size: 20px; /* Increase icon size on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .search-container {
+                width: 100%;
+                margin-top: 10px;
+                justify-content: flex-start;
+            }
+
+            .search-container input {
+                width: 100%;
+            }
+        }
+
+        /* Styling for the headlines section */
+        .headlines {
+            padding: 20px;
+        }
+
+        .headline {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Latest Released Headlines</h1>
+        <div class="search-container">
+            <input type="text" placeholder="Search headlines..." id="searchInput">
+            <button class="search-btn" id="searchBtn">
+                <i class="fa fa-search"></i> <!-- Font Awesome search icon -->
+            </button>
+        </div>
+    </div>
+
+    <div class="headlines">
+        <div class="headline">Headline 1: Latest news about the economy...</div>
+        <div class="headline">Headline 2: New tech trends in 2025...</div>
+        <div class="headline">Headline 3: Groundbreaking medical discoveries...</div>
+        <div class="headline">Headline 4: Environmental concerns rising globally...</div>
+        <div class="headline">Headline 5: Political shifts in Europe...</div>
+    </div>
+
+    <script>
+        // Toggle search input field visibility
+        document.getElementById('searchBtn').addEventListener('click', function () {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput.style.display === 'none' || searchInput.style.display === '') {
+                searchInput.style.display = 'block';
+                searchInput.focus(); // Automatically focus on the search input
+            } else {
+                // You can handle the search logic here, e.g., filter the headlines
+                const searchQuery = searchInput.value.toLowerCase();
+                const headlines = document.querySelectorAll('.headline');
+                
+                headlines.forEach(headline => {
+                    if (headline.textContent.toLowerCase().includes(searchQuery)) {
+                        headline.style.display = 'block'; // Show matching headlines
+                    } else {
+                        headline.style.display = 'none'; // Hide non-matching headlines
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
