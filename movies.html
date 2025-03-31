@@ -278,13 +278,16 @@
 
     <!-- Latest Released Movies -->
     <section class="latest-released">
-        <h3>
-            <span><i class="fas fa-film"></i> Latest Released Movie</span>
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search..." oninput="searchMovies()">
-                <button class="search-btn" onclick="toggleSearchInput()"><i class="fas fa-search"></i></button>
-            </div>
-        </h3>
+        <div class="header">
+        <h1>Latest Released Headlines</h1>
+        <div class="search-container">
+            <input type="text" placeholder="Search headlines..." id="searchInput">
+            <button class="search-btn" id="searchBtn">
+                <i class="fa fa-search"></i> <!-- Font Awesome search icon -->
+            </button>
+        </div>
+    </div>
+
         <div class="movie-grid latest-released-grid">
             <!-- Movie Cards (Latest) -->
             <div class="movie-card" data-title="Movie Title 1">
@@ -318,32 +321,26 @@
     </section>
 
     <script>
-        function toggleSearchInput() {
-            const searchInput = document.getElementById("searchInput");
-            const searchContainer = document.querySelector(".search-container");
-            
-            // Toggle visibility
-            if (searchInput.style.display === "block") {
-                searchInput.style.display = "none";
+        // Toggle search input field visibility
+        document.getElementById('searchBtn').addEventListener('click', function () {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput.style.display === 'none' || searchInput.style.display === '') {
+                searchInput.style.display = 'block';
+                searchInput.focus(); // Automatically focus on the search input
             } else {
-                searchInput.style.display = "block";
-                searchInput.focus(); // Focus on the input to open the keyboard on mobile
+                // You can handle the search logic here, e.g., filter the headlines
+                const searchQuery = searchInput.value.toLowerCase();
+                const headlines = document.querySelectorAll('.headline');
+                
+                headlines.forEach(headline => {
+                    if (headline.textContent.toLowerCase().includes(searchQuery)) {
+                        headline.style.display = 'block'; // Show matching headlines
+                    } else {
+                        headline.style.display = 'none'; // Hide non-matching headlines
+                    }
+                });
             }
-        }
-
-        function searchMovies() {
-            const query = document.getElementById("searchInput").value.toLowerCase();
-            const movieCards = document.querySelectorAll(".movie-card");
-
-            movieCards.forEach(function(card) {
-                const title = card.getAttribute("data-title").toLowerCase();
-                if (title.includes(query)) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
-            });
-        }
+        });
     </script>
 </body>
 
