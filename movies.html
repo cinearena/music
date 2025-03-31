@@ -285,51 +285,49 @@
             <span><i class="fas fa-film"></i> Latest Released Movie</span>
             <!-- Search Icon on the Right -->
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search movies...">
+                <input type="text" id="searchInput" placeholder="Search movies..." oninput="searchMovies()">
                 <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i></button>
             </div>
         </h3>
 
-        <div class="movie-grid latest-released-grid">
+        <div class="movie-grid latest-released-grid" id="movieGrid">
             <!-- Movie Cards (Latest) -->
-            <div class="movie-card">
+            <div class="movie-card" data-title="Movie Title 1">
                 <img src="download (4).jpeg" alt="Movie 1">
                 <div class="movie-info">
                     <h4>Movie Title 1</h4>
                     <button class="watch-btn">Watch Now</button>
                 </div>
             </div>
-            <div class="movie-card">
+            <div class="movie-card" data-title="Movie Title 2">
                 <img src="download (5).jpeg" alt="Movie 2">
                 <div class="movie-info">
                     <h4>Movie Title 2</h4>
                     <button class="watch-btn">Watch Now</button>
                 </div>
             </div>
-            <div class="movie-card">
+            <div class="movie-card" data-title="Movie Title 3">
                 <img src="download (6).jpeg" alt="Movie 3">
                 <div class="movie-info">
                     <h4>Movie Title 3</h4>
                     <button class="watch-btn">Watch Now</button>
                 </div>
             </div>
-            <div class="movie-card">
+            <div class="movie-card" data-title="Movie Title 4">
                 <img src="download (7).jpeg" alt="Movie 4">
                 <div class="movie-info">
                     <h4>Movie Title 4</h4>
                     <button class="watch-btn">Watch Now</button>
                 </div>
             </div>
-
-            <div class="movie-card">
+            <div class="movie-card" data-title="Movie Title 5">
                 <img src="download (8).jpeg" alt="Movie 5">
                 <div class="movie-info">
                     <h4>Movie Title 5</h4>
                     <button class="watch-btn">Watch Now</button>
                 </div>
             </div>
-
-            <div class="movie-card">
+            <div class="movie-card" data-title="Movie Title 6">
                 <img src="download (8).jpeg" alt="Movie 6">
                 <div class="movie-info">
                     <h4>Movie Title 6</h4>
@@ -343,14 +341,22 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-links">
-            <a href="#">Contact</a> | <a href="#">Privacy</a> | <a href="#">Terms</a>
-        </div>
-    </footer>
+    <script>
+        function searchMovies() {
+            const query = document.getElementById("searchInput").value.toLowerCase();
+            const movieCards = document.querySelectorAll(".movie-card");
 
-    <script src="script.js"></script>
+            movieCards.forEach(function(card) {
+                const title = card.getAttribute("data-title").toLowerCase();
+                if (title.includes(query)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
+
 </body>
 
 </html>
