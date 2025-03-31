@@ -92,18 +92,16 @@
 
         /* Latest Released Movies */
         .latest-released h3 {
-            text-align: center;
-            margin-top: 20px;
-            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-size: 30px;
             color: #fff;
             background-color: #ff5733; /* Background color */
-            padding: 5px;
+            padding: 5px 15px;
             border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 5px;
         }
 
         .latest-released h2 i {
@@ -192,6 +190,24 @@
             .movie-grid {
                 grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
             }
+
+            .latest-released h3 {
+                font-size: 24px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .search-container {
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .search-container input {
+                display: block; /* Show input on mobile view */
+                width: 80%;
+                margin: 0 auto;
+                padding: 10px;
+            }
         }
 
         /* Tablet (up to 768px) */
@@ -206,33 +222,22 @@
              .latest-released .movie-grid {
                 grid-template-columns: repeat(5, 1fr); /* 5 cards per row */
             }
-        }
 
-        /* Mobile View Adjustments for 480px */
-        @media (max-width: 480px) {
-             .latest-released .movie-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
-                margin: 5px;
-                padding: 5px;
+            .latest-released h3 {
+                font-size: 30px;
+                flex-direction: row;
+                justify-content: space-between;
             }
 
-            .telegram-toggle {
-                padding: 5px 10px;
-                font-size: 12px;
-            }
-
-            h1 {
-                font-size: 24px;
-                margin-bottom: 10px;
+            .search-container input {
+                display: inline-block; /* Show input on desktop view */
             }
         }
 
         /* Search Input */
         .search-container {
             display: flex;
-            justify-content: center;
             align-items: center;
-            margin-top: 10px;
         }
 
         .search-container input {
@@ -255,7 +260,6 @@
         .search-btn:hover {
             color: #ff5733;
         }
-
     </style>
     <!-- Add FontAwesome for the movie icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -277,13 +281,14 @@
 
     <!-- Latest Released Movies -->
     <section class="latest-released">
-        <h3><i class="fas fa-film"></i> Latest Released Movie</h3>
-
-        <!-- Search Input -->
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search movies...">
-            <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i></button>
-        </div>
+        <h3>
+            <span><i class="fas fa-film"></i> Latest Released Movie</span>
+            <!-- Search Icon on the Right -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search movies...">
+                <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+        </h3>
 
         <div class="movie-grid latest-released-grid">
             <!-- Movie Cards (Latest) -->
@@ -315,6 +320,7 @@
                     <button class="watch-btn">Watch Now</button>
                 </div>
             </div>
+
             <div class="movie-card">
                 <img src="download (8).jpeg" alt="Movie 5">
                 <div class="movie-info">
@@ -330,30 +336,21 @@
                     <button class="watch-btn">Watch Now</button>
                 </div>
             </div>
+            
         </div>
         <div class="see-more">
             <button class="see-more-btn">See More</button>
         </div>
     </section>
 
-    
-    <script>
-        // JavaScript to handle search functionality
-        document.getElementById('searchBtn').addEventListener('click', function () {
-            const searchInput = document.getElementById('searchInput').value.toLowerCase();
-            const movieCards = document.querySelectorAll('.movie-card');
-            
-            movieCards.forEach(card => {
-                const movieTitle = card.querySelector('h4').textContent.toLowerCase();
-                if (movieTitle.includes(searchInput)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    </script>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">Contact</a> | <a href="#">Privacy</a> | <a href="#">Terms</a>
+        </div>
+    </footer>
 
+    <script src="script.js"></script>
 </body>
 
 </html>
