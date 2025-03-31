@@ -104,10 +104,6 @@
             margin-bottom: 5px;
         }
 
-        .latest-released h2 i {
-            font-size: 1.8em;
-        }
-
         /* Movie Grid */
         .latest-released .movie-grid {
             display: grid;
@@ -148,7 +144,7 @@
 
         .movie-info h4 {
             font-size: 1.2em;
-            margin-top:2px;
+            margin-top: 2px;
             margin-bottom: 5px;
         }
 
@@ -200,6 +196,7 @@
             .search-container {
                 width: 100%;
                 margin-top: 10px;
+                display: none; /* Initially hidden on mobile */
             }
 
             .search-container input {
@@ -212,14 +209,14 @@
 
         /* Tablet (up to 768px) */
         @media (max-width: 768px) {
-             .latest-released .movie-grid {
+            .latest-released .movie-grid {
                 grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
             }
         }
 
         /* Laptop or larger (greater than 768px) */
         @media (min-width: 769px) {
-             .latest-released .movie-grid {
+            .latest-released .movie-grid {
                 grid-template-columns: repeat(5, 1fr); /* 5 cards per row */
             }
 
@@ -245,7 +242,7 @@
             font-size: 16px;
             border-radius: 4px;
             border: 1px solid #ccc;
-            display: none; /* Initially hidden on mobile */
+            display: none; /* Initially hidden */
         }
 
         .search-btn {
@@ -283,14 +280,12 @@
     <section class="latest-released">
         <h3>
             <span><i class="fas fa-film"></i> Latest Released Movie</span>
-            <!-- Search Icon on the Right -->
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search movies..." oninput="searchMovies()">
-                <button class="search-btn" id="searchBtn"><i class="fas fa-search"></i></button>
+                <input type="text" id="searchInput" placeholder="Search..." oninput="searchMovies()">
+                <button class="search-btn" onclick="toggleSearchInput()"><i class="fas fa-search"></i></button>
             </div>
         </h3>
-
-        <div class="movie-grid latest-released-grid" id="movieGrid">
+        <div class="movie-grid latest-released-grid">
             <!-- Movie Cards (Latest) -->
             <div class="movie-card" data-title="Movie Title 1">
                 <img src="download (4).jpeg" alt="Movie 1">
@@ -299,42 +294,7 @@
                     <button class="watch-btn">Watch Now</button>
                 </div>
             </div>
-            <div class="movie-card" data-title="Movie Title 2">
-                <img src="download (5).jpeg" alt="Movie 2">
-                <div class="movie-info">
-                    <h4>Movie Title 2</h4>
-                    <button class="watch-btn">Watch Now</button>
-                </div>
-            </div>
-            <div class="movie-card" data-title="Movie Title 3">
-                <img src="download (6).jpeg" alt="Movie 3">
-                <div class="movie-info">
-                    <h4>Movie Title 3</h4>
-                    <button class="watch-btn">Watch Now</button>
-                </div>
-            </div>
-            <div class="movie-card" data-title="Movie Title 4">
-                <img src="download (7).jpeg" alt="Movie 4">
-                <div class="movie-info">
-                    <h4>Movie Title 4</h4>
-                    <button class="watch-btn">Watch Now</button>
-                </div>
-            </div>
-            <div class="movie-card" data-title="Movie Title 5">
-                <img src="download (8).jpeg" alt="Movie 5">
-                <div class="movie-info">
-                    <h4>Movie Title 5</h4>
-                    <button class="watch-btn">Watch Now</button>
-                </div>
-            </div>
-            <div class="movie-card" data-title="Movie Title 6">
-                <img src="download (8).jpeg" alt="Movie 6">
-                <div class="movie-info">
-                    <h4>Movie Title 6</h4>
-                    <button class="watch-btn">Watch Now</button>
-                </div>
-            </div>
-            
+            <!-- More Movie Cards -->
         </div>
         <div class="see-more">
             <button class="see-more-btn">See More</button>
@@ -342,6 +302,19 @@
     </section>
 
     <script>
+        function toggleSearchInput() {
+            const searchInput = document.getElementById("searchInput");
+            const searchContainer = document.querySelector(".search-container");
+            
+            // Toggle visibility
+            if (searchInput.style.display === "block") {
+                searchInput.style.display = "none";
+            } else {
+                searchInput.style.display = "block";
+                searchInput.focus(); // Focus on the input to open the keyboard on mobile
+            }
+        }
+
         function searchMovies() {
             const query = document.getElementById("searchInput").value.toLowerCase();
             const movieCards = document.querySelectorAll(".movie-card");
@@ -356,7 +329,6 @@
             });
         }
     </script>
-
 </body>
 
 </html>
