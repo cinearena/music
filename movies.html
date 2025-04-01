@@ -14,388 +14,97 @@
             background-color: #000;
         }
 
-        /* Menu Styling */
-        .menu {
+        /* Search Bar Styling */
+        .search-container {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 20px;
-            width: 100%;
-            z-index: 10;
+            margin: 20px 0;
         }
 
-        .menu a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-            transition: color 0.3s ease;
+        .search-box {
+            width: 80%;
+            max-width: 400px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
         }
 
-        /* Neon Glow Effect */
-        .menu a::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300%;
-            height: 300%;
-            background-color: rgba(0, 255, 255, 0.7);
-            animation: neon-border 3s infinite alternate;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: -1;
-        }
-
-        @keyframes neon-border {
-            0% {
-                box-shadow: 0 0 10px rgba(0, 255, 255, 1), 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6);
-                background-color: rgba(0, 255, 255, 0.7);
-            }
-
-            50% {
-                box-shadow: 0 0 10px rgba(255, 0, 255, 1), 0 0 20px rgba(255, 0, 255, 0.8), 0 0 30px rgba(255, 0, 255, 0.6);
-                background-color: rgba(255, 0, 255, 0.7);
-            }
-
-            100% {
-                box-shadow: 0 0 10px rgba(255, 255, 0, 1), 0 0 20px rgba(255, 255, 0, 0.8), 0 0 30px rgba(255, 255, 0, 0.6);
-                background-color: rgba(255, 255, 0, 0.7);
-            }
-        }
-
-        h1 {
-            text-align: center;
-            color: #00bfff;
-            margin-bottom: 20px;
-        }
-
-        .telegram-toggle {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background-color: #0088cc;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .telegram-toggle:hover {
-            background-color: #006699;
-        }
-
-        /* Latest Released Movies */
         .latest-released h3 {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            text-align: center;
+            margin-top: 20px;
             font-size: 30px;
             color: #fff;
-            background-color: #ff5733; /* Background color */
-            padding: 5px 15px;
+            background-color: #ff5733;
+            padding: 5px;
             border-radius: 5px;
-            margin-top: 20px;
-            margin-bottom: 5px;
         }
 
-        /* Movie Grid */
-        .latest-released .movie-grid {
+        .movie-grid {
             display: grid;
             gap: 20px;
             padding: 20px;
-            margin-top: 0px;
-            grid-template-columns: repeat(2, 1fr); /* Default to 2 items per row for smaller screens */
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         }
 
         .movie-card {
-            position: relative;
             background-color: #fff;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .movie-card:hover {
-            transform: scale(1.05); /* Zoom effect on hover */
+            text-align: center;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .movie-card img {
             width: 100%;
             height: auto;
-            border-bottom: 4px solid #f1f1f1;
-            transition: transform 0.3s ease;
         }
-
-        .movie-card:hover img {
-            transform: scale(1.1); /* Zoom effect on image when the card is hovered */
-        }
-
-        .movie-info {
-            padding: 10px;
-            text-align: center;
-        }
-
-        .movie-info h4 {
-            font-size: 1.2em;
-            margin-top: 2px;
-            margin-bottom: 5px;
-        }
-
-        .watch-btn {
-            padding: 10px 20px;
-            background-color: #ff5733;
-            border: none;
-            cursor: pointer;
-            color: white;
-            font-size: 1.1em;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .watch-btn:hover {
-            background-color: #e04e1f;
-        }
-
-        /* See More Button */
-        .see-more {
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .see-more-btn {
-            padding: 10px 20px;
-            background-color: #ff5733;
-            border: none;
-            cursor: pointer;
-            color: white;
-            font-size: 1.2em;
-            border-radius: 5px;
-        }
-
-        /* Responsive Styles */
-
-        /* Mobile (up to 600px) */
-        @media (max-width: 600px) {
-            .movie-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
-            }
-
-            .latest-released h3 {
-                font-size: 24px;
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .search-container {
-                width: 100%;
-                margin-top: 10px;
-                display: none; /* Initially hidden on mobile */
-            }
-
-            .search-container input {
-                display: block; /* Show input on mobile view */
-                width: 80%;
-                margin: 0 auto;
-                padding: 10px;
-            }
-        }
-
-        /* Tablet (up to 768px) */
-        @media (max-width: 768px) {
-            .latest-released .movie-grid {
-                grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
-            }
-        }
-
-        /* Laptop or larger (greater than 768px) */
-        @media (min-width: 769px) {
-            .latest-released .movie-grid {
-                grid-template-columns: repeat(5, 1fr); /* 5 cards per row */
-            }
-
-            .latest-released h3 {
-                font-size: 30px;
-                flex-direction: row;
-                justify-content: space-between;
-            }
-
-            
-        }
-
-        /* Search Input */
-       .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #f8f9fa;
-        }
-
-        /* Title of the section */
-        .header h1 {
-            margin: 0;
-        }
-
-        /* Search input and button styling */
-        .search-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .search-container input {
-            padding: 8px;
-            font-size: 16px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            margin-right: 10px;
-            display: none; /* Initially hidden on mobile */
-        }
-
-        .search-btn {
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .search-btn i {
-            font-size: 18px;
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .search-container input {
-                display: inline-block; /* Show the input field on smaller screens */
-                width: 150px;
-            }
-
-            .search-btn i {
-                font-size: 20px; /* Increase icon size on smaller screens */
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .search-container {
-                width: 100%;
-                margin-top: 10px;
-                justify-content: flex-start;
-            }
-
-            .search-container input {
-                width: 100%;
-            }
-        }
-
-        /* Styling for the headlines section */
-        .headlines {
-            padding: 20px;
-        }
-
-        .headline {
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-
-        
     </style>
-    <!-- Add FontAwesome for the movie icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
-
-    <div>
-        <a href="https://t.me/cric_stream" class="telegram-toggle">Join Telegram</a>
-        <h1>CineArena.live</h1>
-    </div>
+    <h1>CineArena.live</h1>
     
-    <!-- Menu Section -->ll
-    <div class="menu">
-        <a href="https://cricstream4u.github.io/crictv/">Sports</a>
-        <a href="#">Music</a>
-        <a href="#">Movies</a>
+    <div class="search-container">
+        <input type="text" id="search" class="search-box" placeholder="Search movies...">
     </div>
 
-    <!-- Latest Released Movies -->
     <section class="latest-released">
-        <div class="header">
-        <h1>Latest Released Headlines</h1>
-        <div class="search-container">
-            <input type="text" placeholder="Search headlines..." id="searchInput">
-            <button class="search-btn" id="searchBtn">
-                <i class="fa fa-search"></i> <!-- Font Awesome search icon -->
-            </button>
-        </div>
-    </div>
-
-        <div class="movie-grid latest-released-grid">
-            <!-- Movie Cards (Latest) -->
+        <h3>Latest Released Movie</h3>
+        <div class="movie-grid" id="movieGrid">
             <div class="movie-card" data-title="Movie Title 1">
-                <img src="download (4).jpeg" alt="Movie 1">
-                <div class="movie-info">
-                    <h4>Movie Title 1</h4>
-                    <button class="watch-btn">Watch Now</button>
-                </div>
+                <img src="download1.jpeg" alt="Movie 1">
+                <h4>Movie Title 1</h4>
             </div>
-
             <div class="movie-card" data-title="Movie Title 2">
-                <img src="download (4).jpeg" alt="Movie 2">
-                <div class="movie-info">
-                    <h4>Thala 2</h4>
-                    <button class="watch-btn">Watch Now</button>
-                </div>
+                <img src="download2.jpeg" alt="Movie 2">
+                <h4>Movie Title 2</h4>
             </div>
-
             <div class="movie-card" data-title="Movie Title 3">
-                <img src="download (4).jpeg" alt="Movie 3">
-                <div class="movie-info">
-                    <h4>Pushpa 3</h4>
-                    <button class="watch-btn">Watch Now</button>
-                </div>
+                <img src="download3.jpeg" alt="Movie 3">
+                <h4>Movie Title 3</h4>
             </div>
-            <!-- More Movie Cards -->
-        </div>
-        <div class="see-more">
-            <button class="see-more-btn">See More</button>
         </div>
     </section>
 
     <script>
-        // Toggle search input field visibility
-        document.getElementById('searchBtn').addEventListener('click', function () {
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput.style.display === 'none' || searchInput.style.display === '') {
-                searchInput.style.display = 'block';
-                searchInput.focus(); // Automatically focus on the search input
-            } else {
-                // You can handle the search logic here, e.g., filter the headlines
-                const searchQuery = searchInput.value.toLowerCase();
-                const headlines = document.querySelectorAll('.headline');
-                
-                headlines.forEach(headline => {
-                    if (headline.textContent.toLowerCase().includes(searchQuery)) {
-                        headline.style.display = 'block'; // Show matching headlines
-                    } else {
-                        headline.style.display = 'none'; // Hide non-matching headlines
-                    }
-                });
-            }
+        document.getElementById('search').addEventListener('input', function () {
+            let searchValue = this.value.toLowerCase();
+            let movies = document.querySelectorAll('.movie-card');
+
+            movies.forEach(movie => {
+                let title = movie.getAttribute('data-title').toLowerCase();
+                if (title.includes(searchValue)) {
+                    movie.style.display = "flex";
+                } else {
+                    movie.style.display = "none";
+                }
+            });
         });
     </script>
 </body>
-
-</html>
+    </html>
+    
