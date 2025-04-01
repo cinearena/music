@@ -58,11 +58,11 @@
                     schedule: {
                         adbreak1: {
                             offset: "pre",
-                            tag: "https://your-vast-ad-tag-url.com/vast.xml"
+                            tag: "https://studyluda.com/d/mWF.z/d-GKNOviZsGZUG/ueXmi9fulZ/UHlfktPFT/Y/y/MszUEN4qOQDmcst/NLjEIwz/MPTXgT4bOwAS"
                         },
                         adbreak2: {
                             offset: "50%",
-                            tag: "https://your-vast-ad-tag-url.com/vast.xml"
+                            tag: "#"
                         }
                     }
                 }
