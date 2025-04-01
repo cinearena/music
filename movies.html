@@ -160,6 +160,15 @@
             background-color: #e04e1f;
         }
 
+
+        /* Mobile View (2 posts per row) */
+       @media (max-width: 767px) {
+            .movie-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+
         /* Tablet View (3 posts per row) */
         @media (min-width: 768px) {
             .movie-grid {
