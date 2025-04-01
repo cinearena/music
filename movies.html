@@ -159,6 +159,20 @@
         .watch-btn:hover {
             background-color: #e04e1f;
         }
+
+        /* Tablet View (3 posts per row) */
+        @media (min-width: 768px) {
+            .movie-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Laptop View (5 posts per row) */
+        @media (min-width: 1024px) {
+            .movie-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
     </style>
 </head>
 
