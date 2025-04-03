@@ -85,42 +85,61 @@
 <body>
     <div id="jwplayerDiv"></div>
     <script>
-        // Function to get URL query parameters
-        function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
-        }
+    // Function to get URL query parameters
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
 
-        // Retrieve the 'file' parameter from the URL
-        const hlsStreamUrl = getQueryParam("file") || "https://s2.enzru.net/hls2/01/00001/ytzxoblx6gmh_n/master.m3u8?t=uHhFeKziLORPdjkV4gVpycKTLgxFY_OhkFMCpWyNdro&s=1743702958&e=10800&v=1545093&i=0.3&sp=0";
+    // Retrieve the 'file' parameter from the URL
+    const hlsStreamUrl = getQueryParam("file") || "https://s2.enzru.net/hls2/01/00001/ytzxoblx6gmh_n/master.m3u8?t=uHhFeKziLORPdjkV4gVpycKTLgxFY_OhkFMCpWyNdro&s=1743702958&e=10800&v=1545093&i=0.3&sp=0";
 
-        if (!hlsStreamUrl) {
-            alert("No HLS stream URL provided. Please add a 'file' parameter to the URL.");
-        } else {
-            // Initialize JW Player
-            const playerInstance = jwplayer("jwplayerDiv");
+    if (!hlsStreamUrl) {
+        alert("No HLS stream URL provided. Please add a 'file' parameter to the URL.");
+    } else {
+        // Initialize JW Player
+        const playerInstance = jwplayer("jwplayerDiv");
 
-            // Configure the player with the HLS stream
-            playerInstance.setup({
-                file: hlsStreamUrl,
-                width: "100%",
-                height: "100%",
-                aspectratio: "16:9",
-                autostart: true,
-                mute: false,
-                preload: "auto",
-                cast: {
-                    appid: "CC1AD845"
-                },
-                playbackRateControls: [0.5, 1, 1.5, 2], // Optional: Add playback speed controls
-            });
-             
-            // Handle player errors gracefully
-            playerInstance.on('error', function(error) {
-                console.error("Error loading stream:", error.message);
-                
-            });
-        }
-    </script>
+        // Configure JW Player with the HLS stream and VAST ads
+        playerInstance.setup({
+            file: hlsStreamUrl,
+            width: "100%",
+            height: "100%",
+            aspectratio: "16:9",
+            autostart: true,
+            mute: false,
+            preload: "auto",
+            cast: {
+                appid: "CC1AD845"
+            },
+            playbackRateControls: [0.5, 1, 1.5, 2], // Optional: Add playback speed controls
+
+            // Add VAST Ads Configuration
+            advertising: {
+                client: "vast",
+                schedule: {
+                    adbreak1: {
+                        offset: "pre", // Ad plays before video starts
+                        tag: "https://www.vasturl.com/sample-ad.xml" // Replace with a real VAST ad tag URL
+                    },
+                    adbreak2: {
+                        offset: "50%", // Mid-roll ad at 50% of video duration
+                        tag: "https://www.vasturl.com/sample-ad.xml"
+                    },
+                    adbreak3: {
+                        offset: "post", // Ad plays after the video ends
+                        tag: "https://www.vasturl.com/sample-ad.xml"
+                    }
+                }
+            }
+        });
+
+        // Handle player errors gracefully
+        playerInstance.on('error', function(error) {
+            console.error("Error loading stream:", error.message);
+        });
+    }
+</script>
+
 </body>
 </html>
