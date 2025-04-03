@@ -114,21 +114,7 @@
                 },
                 playbackRateControls: [0.5, 1, 1.5, 2], // Optional: Add playback speed controls
             });
-             advertising: {
-                    client: "vast",
-                    schedule: {
-                        adbreak1: {
-                            offset: "pre",
-                            tag: "https://studyluda.com/d.mLFFztdmGVNmvfZxG/Uw/Oe_mm9/uKZFU-lDkiPKTWYTyrMAzjE/4WO/DecrtLNtj/IDz/MZT_gf4tOHClZ/sZaYWO1jp/dTDR0/xW"
-                        },
-                        adbreak2: {
-                            offset: "50%",
-                            tag: "Vast1"
-                        }
-                    }
-                }
-            });
-
+             
             // Handle player errors gracefully
             playerInstance.on('error', function(error) {
                 console.error("Error loading stream:", error.message);
