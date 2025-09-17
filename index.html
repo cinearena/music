@@ -2,23 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>JW Player Example</title>
-  <script src="https://cdn.jwplayer.com/libraries/IDzF9Zmk.js"></script>
+  <title>Plyr HLS Example</title>
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
   <style>
-    #myPlayer { width: 100%; max-width: 800px; margin: auto; }
+    .plyr { width: 100%; max-width: 800px; margin: auto; }
   </style>
 </head>
 <body>
-  <div id="myPlayer"></div>
+  <video id="player" controls playsinline></video>
 
   <script>
-    jwplayer("myPlayer").setup({
-      file: "https://in-mc-fdlive.fancode.com/linear/hls/pb/event/mnVf-jRHRYGa6suVyJUV8g/stream/ffc9b423-7118-4b98-9224-672366ae771f:SIN2/master.m3u8?hdnea=st=1758104430~exp=1758104730~acl=*~id=4584f83c-9ee4-4b8b-b6fb-177f6992255f~hmac=a29a12c7834423e7fe3f9ed84684211a6c049bfa2746cc3625d4bad44671da77",
-      type: "hls",
-      width: "100%",
-      aspectratio: "16:9",
-      autostart: true
-    });
+    const video = document.getElementById("player");
+    const source = "https://in-mc-fdlive.fancode.com/linear/hls/pb/event/mnVf-jRHRYGa6suVyJUV8g/stream/ffc9b423-7118-4b98-9224-672366ae771f:SIN2/master.m3u8?hdnea=st=1758104430~exp=1758104730~acl=*~id=4584f83c-9ee4-4b8b-b6fb-177f6992255f~hmac=a29a12c7834423e7fe3f9ed84684211a6c049bfa2746cc3625d4bad44671da77";
+
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(source);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, () => video.play());
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+      video.src = source;
+      video.play();
+    }
+
+    new Plyr(video);
   </script>
 </body>
 </html>
