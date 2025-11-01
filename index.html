@@ -187,12 +187,15 @@
 
 
   <!--- Main Content -->
+  <h1 class="section-title" style="margin: 5px 0px 5px;">📺 Sports Live</h1>
+  <div id="sports" class="matches" style="padding:20px;"></div>
+
   <h1 class="section-title">🎵 Music Live</h1>
   <div id="music" class="matches" style="padding:20px;"></div>
 
   <script>
     async function loadMatches() {
-      const url = "https://raw.githubusercontent.com/cinearena/Cine-Arena/main/music.json";
+      const url = "https://raw.githubusercontent.com/cinearena/Cine-Arena/refs/heads/main/music.json";
       const response = await fetch(url);
       const data = await response.json();
 
