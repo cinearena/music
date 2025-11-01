@@ -195,41 +195,45 @@
   <div id="music" class="matches" style="padding:20px;"></div>
 
   <script>
-    async function loadMatches() {
-      const url = "https://raw.githubusercontent.com/cinearena/Cine-Arena/refs/heads/main/music.json";
-      const response = await fetch(url);
-      const data = await response.json();
+async function loadSection(jsonUrl, container) {
+  const response = await fetch(jsonUrl);
+  const data = await response.json();
 
-      const sportsDiv = document.getElementById("sports");
-      const musicDiv = document.getElementById("music");
+  data.matches.forEach(match => {
+    const card = document.createElement("div");
+    card.className = "match-card";
 
-      data.matches.forEach(match => {
-        const card = document.createElement("div");
-        card.className = "match-card";
+    card.innerHTML = `
+      <img src="${match.src}" alt="${match.title}">
+      <h3>${match.title}</h3>
+      <p>${match.event_name || ''}</p>
+      <p class="status ${match.status}">${match.status}</p>
+      <button class="play-btn">▶ Play</button>
+    `;
 
-        card.innerHTML = `
-          <img src="${match.src}" alt="${match.title}">
-          <h3>${match.title}</h3>
-          <p>${match.event_name || ''}</p>
-          <p class="status ${match.status}">${match.status}</p>
-          <button class="play-btn">▶ Play</button>
-        `;
+    card.querySelector(".play-btn").onclick = () => {
+      if (match.url) window.open(match.url, "_blank");
+      else alert("Stream Not Available 😔");
+    };
 
-        card.querySelector(".play-btn").onclick = () => {
-          if (match.url) window.open(match.url, "_blank");
-          else alert("Stream Not Available 😔");
-        };
+    container.appendChild(card);
+  });
+}
 
-        if ((match.event_category || "").toLowerCase() === "sports") {
-          sportsDiv.appendChild(card);
-        } else {
-          musicDiv.appendChild(card);
-        }
-      });
-    }
+async function loadMatches() {
+  const sportsUrl = "https://raw.githubusercontent.com/cinearena/Cine-Arena/main/sports.json";
+  const musicUrl = "https://raw.githubusercontent.com/cinearena/Cine-Arena/main/music.json";
 
-    loadMatches();
-  </script>
+  const sportsDiv = document.getElementById("sports");
+  const musicDiv = document.getElementById("music");
+
+  loadSection(sportsUrl, sportsDiv);
+  loadSection(musicUrl, musicDiv);
+}
+
+loadMatches();
+</script>
+
 
 
  <script>
